@@ -58,3 +58,10 @@ print(unique_company)
 # Dropping agent and company columns
 df <- df %>%
   select(-agent, -company)
+
+# Identify missing values in the dataset
+df %>% 
+  summarise_all(~sum(is.na(.)))
+
+# Dropping all rows with NA values
+df <- na.omit(df)
