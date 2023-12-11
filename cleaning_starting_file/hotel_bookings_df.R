@@ -24,3 +24,26 @@ df <- df %>%
     is_canceled == 0 ~ "no",
     TRUE ~ as.character(is_canceled)  # handle other cases if any
   ))
+
+# Showing unique values from is_repeated_guest column
+unique_is_repeated_guest <- unique(df$is_repeated_guest)
+print(unique_is_repeated_guest)
+
+# Changing values from binary to yes/no in is_repeated_guest column
+df <- df %>% 
+  mutate(is_repeated_guest = case_when(
+    is_repeated_guest == 1 ~ "yes",
+    is_repeated_guest == 0 ~ "no",
+    TRUE ~ as.character(is_repeated_guest)  # handle other cases if any
+  ))
+
+# Showing unique values from previous_cancellations column
+unique_previous_cancellations <- unique(df$previous_cancellations)
+print(unique_previous_cancellations)
+# No need to change values in column
+
+# Showing unique values from previous_bookings_not_canceled column
+unique_previous_bookings_not_canceled <- unique(df$previous_bookings_not_canceled)
+print(unique_previous_bookings_not_canceled)
+# No need to change values in column
+
