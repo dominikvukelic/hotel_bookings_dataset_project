@@ -47,3 +47,14 @@ unique_previous_bookings_not_canceled <- unique(df$previous_bookings_not_cancele
 print(unique_previous_bookings_not_canceled)
 # No need to change values in column
 
+# Showing unique values from agent column
+unique_agent <- unique(df$agent)
+print(unique_agent)
+
+# Showing unique values from company column
+unique_company <- unique(df$company)
+print(unique_company)
+
+# Dropping agent and company columns
+df <- df %>%
+  select(-agent, -company)
