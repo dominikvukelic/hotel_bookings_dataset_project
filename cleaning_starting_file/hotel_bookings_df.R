@@ -91,3 +91,7 @@ df <- df %>% select(1:3, arrival_date, 4:length(df))
 # Dropping agent and company columns
 df <- df %>%
   select(-arrival_date_year, -arrival_date_month, -arrival_date_day_of_month)
+
+# Renaming is_repeated_guest column to previous_guest
+df <- df %>%
+  rename(previous_guest = is_repeated_guest)
