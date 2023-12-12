@@ -69,3 +69,25 @@ df <- na.omit(df)
 # Renaming hotel column to hotel_type
 df <- df %>%
   rename(hotel_type = hotel)
+
+# Renaming lead_time column to from_booking_to_arrival
+df <- df %>%
+  rename(from_booking_to_arrival = lead_time)
+
+# Showing unique values from arrival_date_day_of_month column
+unique_arrival_date_day_of_month <- unique(df$arrival_date_day_of_month)
+print(unique_arrival_date_day_of_month)
+
+# Convert month names to numerical values
+month_num <- match(tolower(df$arrival_date_month), tolower(month.name))
+df$arrival_date_month <- ifelse(is.na(month_num), NA, month_num)
+
+# Combine 'arrival_date_year', 'arrival_date_month', and 'arrival_date_day_of_month' into 'arrival_date'
+df$arrival_date <- as.Date(paste(df$arrival_date_year, df$arrival_date_month, df$arrival_date_day_of_month, sep="-"))
+
+# Move 'arrival_date' column to the 4th position
+df <- df %>% select(1:3, arrival_date, 4:length(df))
+
+# Dropping agent and company columns
+df <- df %>%
+  select(-arrival_date_year, -arrival_date_month, -arrival_date_day_of_month)
