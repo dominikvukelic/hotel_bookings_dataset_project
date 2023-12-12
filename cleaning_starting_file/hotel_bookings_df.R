@@ -99,3 +99,7 @@ df <- df %>%
 # Renaming adr column to average_cost_per_night
 df <- df %>%
   rename(average_cost_per_night = adr)
+
+# Renaming reservation_status_date column to last_reservation_update
+df <- df %>%
+  rename(last_reservation_update = reservation_status_date)
