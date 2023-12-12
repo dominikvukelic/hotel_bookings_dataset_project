@@ -95,3 +95,7 @@ df <- df %>%
 # Renaming is_repeated_guest column to previous_guest
 df <- df %>%
   rename(previous_guest = is_repeated_guest)
+
+# Renaming adr column to average_cost_per_night
+df <- df %>%
+  rename(average_cost_per_night = adr)
