@@ -103,3 +103,7 @@ df <- df %>%
 # Renaming reservation_status_date column to last_reservation_update
 df <- df %>%
   rename(last_reservation_update = reservation_status_date)
+
+# Renaming arrival_date_week_number column to arrival_week_number
+df <- df %>%
+  rename(arrival_week_number = arrival_date_week_number)
