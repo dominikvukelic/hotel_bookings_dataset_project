@@ -65,3 +65,7 @@ df %>%
 
 # Dropping all rows with NA values
 df <- na.omit(df)
+
+# Renaming hotel column to hotel_type
+df <- df %>%
+  rename(hotel_type = hotel)
