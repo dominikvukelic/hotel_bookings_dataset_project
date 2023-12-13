@@ -107,3 +107,9 @@ df <- df %>%
 # Renaming arrival_date_week_number column to arrival_week_number
 df <- df %>%
   rename(arrival_week_number = arrival_date_week_number)
+
+# Specifying the path for the cleaned CSV file
+cleaned_file_path <- "cleaned_starting_file/hotel_bookings_cleaned.csv"
+
+# Writing the cleaned DataFrame to a new CSV file
+write.csv(df, file = cleaned_file_path, row.names = FALSE)
