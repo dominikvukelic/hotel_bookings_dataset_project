@@ -28,3 +28,10 @@ ggplot(df_percent, aes(x = "", y = percentage, fill = is_canceled)) +
        fill = "Cancellation Status") +
   scale_fill_manual(values = c("yes" = "lightpink", "no" = "lightblue")) +  # Switched colors
   theme_void()
+
+# Grouped Bar Plot for Cancellation Counts by Hotel Type
+ggplot(data = df, aes(x = hotel_type, fill = factor(is_canceled))) +
+  geom_bar(position = "dodge") +
+  labs(title = "Cancellation Counts by Hotel Type", y = "Count", fill = "Canceled or not") +
+  scale_fill_manual(values = c("yes" = "maroon", "no" = "skyblue"))
+
