@@ -63,3 +63,13 @@ ggplot(data = df_long, aes(x = Stay_Duration, fill = Stay_Type)) +
   labs(title = "Distribution of Stay Duration", x = "Stay Duration (days)", y = "Frequency") +
   facet_wrap(~ Stay_Type, scales = "free_y", labeller = labeller(Stay_Type = c("stays_in_weekend_nights" = "Weekend Stay", "stays_in_week_nights" = "Week Stay"))) +
   scale_fill_manual(values = c("stays_in_weekend_nights" = "blue", "stays_in_week_nights" = "red"), name = "Stay Type")
+
+# Create a bar plot for meal type
+ggplot(data = df, aes(x = meal, fill = factor(meal))) +
+  geom_bar(position = position_dodge(width = 0.9), stat = "count", color = "black") +  # Bar plot
+  geom_text(stat = "count", aes(label = stat(count)), position = position_dodge(width = 0.9), vjust = -0.5) +  # Display numbers above bars
+  labs(title = "Meal Type Preference", x = "", y = "") +  # Remove axis labels
+  scale_fill_discrete(name = "Meal Type") +  # Show value names in legend
+  theme(axis.text.x = element_blank(), axis.text.y = element_blank(),  # Remove axis values
+        axis.title.x = element_blank(), axis.title.y = element_blank(),  # Remove axis titles
+        axis.ticks = element_blank())  # Remove axis ticks
