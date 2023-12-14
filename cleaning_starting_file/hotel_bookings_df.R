@@ -108,6 +108,12 @@ df <- df %>%
 df <- df %>%
   rename(arrival_week_number = arrival_date_week_number)
 
+#Combining stays_in_week_nights and stays_in_weekend_nights into total_stay column
+df$total_stay <- df$stays_in_week_nights + df$stays_in_weekend_nights
+
+# Move 'total_stay' column to the 7th position
+df <- df %>% select(1:3, total_stay, 7:length(df))
+
 # Specifying the path for the cleaned CSV file
 cleaned_file_path <- "cleaned_starting_file/hotel_bookings_cleaned.csv"
 
