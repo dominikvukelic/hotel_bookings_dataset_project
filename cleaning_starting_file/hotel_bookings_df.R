@@ -112,7 +112,7 @@ df <- df %>%
 df$total_stay <- df$stays_in_week_nights + df$stays_in_weekend_nights
 
 # Move 'total_stay' column to the 7th position
-df <- df %>% select(1:3, total_stay, 7:length(df))
+df <- df[, c(1:6, which(names(df) == "total_stay"), 7:ncol(df))]
 
 # Specifying the path for the cleaned CSV file
 cleaned_file_path <- "cleaned_starting_file/hotel_bookings_cleaned.csv"
