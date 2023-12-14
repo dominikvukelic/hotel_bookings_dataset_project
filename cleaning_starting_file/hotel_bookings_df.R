@@ -114,6 +114,23 @@ df$total_stay <- df$stays_in_week_nights + df$stays_in_weekend_nights
 # Move 'total_stay' column to the 7th position
 df <- df[, c(1:6, which(names(df) == "total_stay"), 7:ncol(df))]
 
+# Showing unique values from meal column
+unique_meal <- unique(df$meal)
+print(unique_meal)
+
+# Changing from abbreviations to full values in meal column
+
+df <- df %>%
+  mutate(
+    meal = case_when(
+      meal == "BB" ~ "Bed & Breakfast",
+      meal == "FB" ~ "Full Board (Beakfast, Lunch and Dinner)",
+      meal == "HB" ~ "Half Board (Breakfast and Dinner normally)",
+      meal == "SC" ~ "Self-Catering (No meals are included)",
+      TRUE ~ meal  # Keep other values unchanged
+    )
+  )
+
 # Specifying the path for the cleaned CSV file
 cleaned_file_path <- "cleaned_starting_file/hotel_bookings_cleaned.csv"
 
