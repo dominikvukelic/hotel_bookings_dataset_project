@@ -35,3 +35,17 @@ ggplot(data = df, aes(x = hotel_type, fill = factor(is_canceled))) +
   labs(title = "Cancellation Counts by Hotel Type", y = "Count", fill = "Canceled or not") +
   scale_fill_manual(values = c("yes" = "maroon", "no" = "skyblue"))
 
+# Convert 'arrival_date' to Date format if it's not already
+df$arrival_date <- as.Date(df$arrival_date)
+
+# Set the locale to English
+Sys.setlocale("LC_TIME", "English")
+
+# Create a plot with months on the x-axis and a colorful theme
+ggplot(data = df, aes(x = arrival_date)) +
+  geom_line(stat = "count", color = "blue") +  # You can specify a color for the line
+  labs(title = "Booking Occurrence Over Time", x = "Booking Date", y = "Number of Bookings") +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+  theme_minimal()  +  # Change the theme to a colorful minimal theme
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))  # Rotate x-axis labels
+
