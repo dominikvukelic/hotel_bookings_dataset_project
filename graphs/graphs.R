@@ -49,3 +49,17 @@ ggplot(data = df, aes(x = arrival_date)) +
   theme_minimal()  +  # Change the theme to a colorful minimal theme
   theme(axis.text.x = element_text(angle = 90, hjust = 1))  # Rotate x-axis labels
 
+# Create a histogram for stay durations
+ggplot(data = df, aes(x = total_stay)) +
+  geom_histogram(binwidth = 1, fill = "limegreen", color = "black") +
+  labs(title = "Distribution of Stay Duration", x = "Stay Duration (days)", y = "Frequency")
+
+# Reshape the data for plotting
+df_long <- pivot_longer(df, cols = c(stays_in_weekend_nights, stays_in_week_nights), names_to = "Stay_Type", values_to = "Stay_Duration")
+
+# Create a histogram for stay durations with separate facets for weekend and weekday
+ggplot(data = df_long, aes(x = Stay_Duration, fill = Stay_Type)) +
+  geom_histogram(binwidth = 1, position = "dodge", color = "black") +
+  labs(title = "Distribution of Stay Duration", x = "Stay Duration (days)", y = "Frequency") +
+  facet_wrap(~ Stay_Type, scales = "free_y", labeller = labeller(Stay_Type = c("stays_in_weekend_nights" = "Weekend Stay", "stays_in_week_nights" = "Week Stay"))) +
+  scale_fill_manual(values = c("stays_in_weekend_nights" = "blue", "stays_in_week_nights" = "red"), name = "Stay Type")
