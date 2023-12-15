@@ -2,6 +2,7 @@
 library(ggplot2)
 library(tidyverse)  # Includes dplyr and forcats
 library(scales)
+library(ggrepel)
 
 
 # Specifying the relative path to your dataset within the project
@@ -79,3 +80,16 @@ ggplot(data = df, aes(x = previous_guest, y = total_stay, fill = previous_guest)
   geom_violin(trim = FALSE) +
   geom_boxplot(width = 0.2, fill = "white", color = "black", outlier.shape = NA) +
   labs(title = "Stay Duration vs. Previous Guest Status", x = "Previous Guest", y = "Stay Duration (days)")
+
+# Compute counts by month and hotel type
+df_counts <- df %>%
+  group_by(month = factor(month(arrival_date, label = TRUE)), hotel_type) %>%
+  summarise(count = n())
+
+# Create a bar plot for booking distribution by month
+ggplot(data = df_counts, aes(x = month, y = count, fill = hotel_type)) +
+  geom_col(position = position_dodge(width = 1), color = "black", width = 0.9) +  # Adjust width
+  geom_text(aes(label = count, group = hotel_type),
+            position = position_dodge(width = 1), vjust = -0.5, size = 3) +  # Add numbers above bins
+  labs(title = "Booking Distribution by Month", x = "Month", y = "Count", fill = "Hotel Type") +
+  scale_x_discrete(labels = month.abb)  # Display month names in English
