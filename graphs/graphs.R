@@ -73,3 +73,9 @@ ggplot(data = df, aes(x = meal, fill = factor(meal))) +
   theme(axis.text.x = element_blank(), axis.text.y = element_blank(),  # Remove axis values
         axis.title.x = element_blank(), axis.title.y = element_blank(),  # Remove axis titles
         axis.ticks = element_blank())  # Remove axis ticks
+
+# Create a violin plot to compare stay duration for previous and non-previous guests
+ggplot(data = df, aes(x = previous_guest, y = total_stay, fill = previous_guest)) +
+  geom_violin(trim = FALSE) +
+  geom_boxplot(width = 0.2, fill = "white", color = "black", outlier.shape = NA) +
+  labs(title = "Stay Duration vs. Previous Guest Status", x = "Previous Guest", y = "Stay Duration (days)")
