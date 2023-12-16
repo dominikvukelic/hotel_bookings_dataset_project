@@ -93,3 +93,23 @@ ggplot(data = df_counts, aes(x = month, y = count, fill = hotel_type)) +
             position = position_dodge(width = 1), vjust = -0.5, size = 3) +  # Add numbers above bins
   labs(title = "Booking Distribution by Month", x = "Month", y = "Count", fill = "Hotel Type") +
   scale_x_discrete(labels = month.abb)  # Display month names in English
+
+
+# Filter the original data for the top 10 countries
+top_countries <- df %>%
+  group_by(country) %>%
+  summarise(total_count = n()) %>%
+  arrange(desc(total_count)) %>%
+  head(10)
+
+filtered_data <- df %>%
+  filter(country %in% top_countries$country)
+
+# Create a grouped bar plot for the top 10 countries showing the counts of each hotel_type
+ggplot(data = filtered_data, aes(x = country, fill = hotel_type)) +
+  geom_bar(position = position_dodge(width = 0.8), color = "black", width = 0.7) +  # Adjust width and add black outline
+  geom_text(stat = "count", aes(label = ..count..), position = position_dodge(width = 0.8), vjust = -0.5, size = 3) +  # Add numbers above bars
+  labs(title = "Hotel Type Distribution in Top 10 Countries", x = "Country", y = "Count", fill = "Hotel Type") +
+  theme_minimal() +  # Use a minimal theme
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +  # Rotate x-axis labels
+  scale_fill_brewer(palette = "Set2")  # Use a color palette from RColorBrewer
