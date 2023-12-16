@@ -13,6 +13,7 @@ library(scales)
 library(ggrepel)
 
 Sys.setlocale("LC_TIME", "English")
+
 ```
 
 ```{r}
