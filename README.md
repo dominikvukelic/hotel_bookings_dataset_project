@@ -13,7 +13,7 @@ This project centers around a comprehensive analysis and processing of a dataset
   - `hotel_bookings_df.R`: R script for cleaning and processing the dataset.
 
 - **`cleaned_starting_file/`**: Contains the cleaned dataset exported from R.
-  - `hotel_bookings_cleaned.csv: The cleaned and processed dataset, ready for analysis.
+  - `hotel_bookings_cleaned.csv`: The cleaned and processed dataset, ready for analysis.
  
 - **`graphs/`**: Contains R script for data visualization.
   - `graphs.R`: R script for analyzing the cleaned dataset and generating visualizations.
