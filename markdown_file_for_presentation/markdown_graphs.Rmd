@@ -19,3 +19,22 @@ dataset_path <- "C:\\Users\\Hectic\\Documents\\hotel_bookings_dataset_project\\c
 
 df <- read.csv(dataset_path, na.strings = c("", "NA"))
 ```
+# Creating a pie chart with percentages for cancelations
+```{r}
+# Calculate percentages of cancelations using dplyr
+df_percent <- df %>%
+  count(is_canceled) %>%
+  mutate(percentage = n / sum(n) * 100)
+
+# Creating a pie chart with percentages for cancelations
+ggplot(df_percent, aes(x = "", y = percentage, fill = is_canceled)) +
+  geom_bar(stat = "identity", width = 1, color = "black") +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = sprintf("%.1f%%", percentage)),
+            position = position_stack(vjust = 0.5)) +
+  labs(title = "Cancellation Status",
+       fill = "Cancellation Status") +
+  scale_fill_manual(values = c("yes" = "lightpink", "no" = "lightblue")) +  # Switched colors
+  theme_void()
+```
+
