@@ -131,6 +131,14 @@ df <- df %>%
     )
   )
 
+# Show all columns to check before exporting cleaned dataframe
+colnames(df)
+
+# Dropping total_stay.1 column
+df <- df %>%
+  select(-total_stay.1)
+
+
 # Specifying the path for the cleaned CSV file
 cleaned_file_path <- "cleaned_starting_file/hotel_bookings_cleaned.csv"
 
