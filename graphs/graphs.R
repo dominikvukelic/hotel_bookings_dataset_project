@@ -32,7 +32,7 @@ ggplot(df_percent, aes(x = "", y = percentage, fill = is_canceled)) +
 
 # Grouped Bar Plot for Cancellation Counts by Hotel Type
 ggplot(data = df, aes(x = hotel_type, fill = factor(is_canceled))) +
-  geom_bar(position = "dodge") +
+  geom_bar(position = "dodge", color = "black") +
   labs(title = "Cancellation Counts by Hotel Type", y = "Count", fill = "Canceled or not") +
   scale_fill_manual(values = c("yes" = "maroon", "no" = "skyblue"))
 
@@ -136,3 +136,10 @@ ggplot(data = non_canceled_data, aes(x = guest_type, fill = guest_type)) +
   theme_minimal() +
   theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank()) +  # Remove x and y-axis labels
   scale_fill_brewer(palette = "Set2")  # Use a color palette from RColorBrewer
+
+# Create a histogram for booking_changes
+ggplot(data = df, aes(x = booking_changes)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black") +
+  geom_text(stat = "count", aes(label = ..count..), vjust = -0.5, size = 3) +  # Show count above each bin
+  scale_x_continuous(breaks = unique(df$booking_changes)) +  # Set x-axis ticks to unique values
+  labs(title = "Distribution of Booking Changes", x = "Booking Changes", y = "Frequency")
