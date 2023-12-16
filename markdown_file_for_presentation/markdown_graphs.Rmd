@@ -1,0 +1,21 @@
+---
+title: "Visual Analysis of Hotel Bookings Dataset"
+author: "Dominik Vukelic"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE)
+## Importing necessary libraries
+library(ggplot2)
+library(tidyverse)  # Includes dplyr and forcats
+library(scales)
+library(ggrepel)
+```
+
+```{r}
+# Load the dataset directly within the R code chunk with the full path
+dataset_path <- "C:\\Users\\Hectic\\Documents\\hotel_bookings_dataset_project\\cleaned_starting_file\\hotel_bookings_cleaned.csv"
+
+df <- read.csv(dataset_path, na.strings = c("", "NA"))
+```
