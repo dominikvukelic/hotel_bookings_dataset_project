@@ -45,7 +45,7 @@ ggplot(data = df, aes(x = hotel_type, fill = factor(is_canceled))) +
   labs(title = "Cancellation Counts by Hotel Type", y = "Count", fill = "Canceled or not") +
   scale_fill_manual(values = c("yes" = "maroon", "no" = "skyblue"))
 ```
-#Creating a plot for Booking Occurrence Over Time
+# Creating a plot for Booking Occurrence Over Time
 ```{r}
 # Convert 'arrival_date' to Date format if it's not already
 df$arrival_date <- as.Date(df$arrival_date)
