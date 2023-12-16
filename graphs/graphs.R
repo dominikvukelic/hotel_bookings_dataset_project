@@ -113,3 +113,26 @@ ggplot(data = filtered_data, aes(x = country, fill = hotel_type)) +
   theme_minimal() +  # Use a minimal theme
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +  # Rotate x-axis labels
   scale_fill_brewer(palette = "Set2")  # Use a color palette from RColorBrewer
+
+# Create a new column to categorize guests based on their characteristics
+df <- df %>%
+  mutate(guest_type = case_when(
+    adults > 0 & children == 0 & babies == 0 ~ "Adults Only",
+    adults > 0 & children > 0 & babies == 0 ~ "Adults with Children",
+    adults > 0 & babies > 0 & children == 0 ~ "Adults with Babies",
+    adults > 0 & children > 0 & babies > 0 ~ "Adults with Children and Babies",
+    TRUE ~ "Other"
+  ))
+
+# Filter data for non-canceled reservations
+non_canceled_data <- df %>%
+  filter(is_canceled == "no")
+
+# Create a grouped bar chart for non-canceled reservations
+ggplot(data = non_canceled_data, aes(x = guest_type, fill = guest_type)) +
+  geom_bar(color = "black", position = position_dodge(width = 0.9), width = 0.7) +  # Add black outline
+  geom_text(stat = "count", aes(label = ..count..), position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +  # Add count labels
+  labs(title = "Guest Type Distribution for Non-Canceled Reservations") +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank()) +  # Remove x and y-axis labels
+  scale_fill_brewer(palette = "Set2")  # Use a color palette from RColorBrewer
