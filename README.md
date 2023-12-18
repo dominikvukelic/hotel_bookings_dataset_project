@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project centers around a comprehensive analysis and processing of a dataset related to hotel bookings, cancellations, types of hotels, guest demographics, stay durations, etc. The dataset was obtained from Kaggle, and the primary objectives include data processing, meticulous cleaning, identification of key trends, and the creation of visualizations to derive meaningful insights.
+This project centers around a comprehensive analysis and processing of a dataset related to hotel bookings, cancellations, types of hotels, guest demographics, stay durations, stay during the week and the weekend, previous bookings etc. The dataset was obtained from Kaggle, and the primary objectives include data processing, meticulous cleaning, identification of key trends, and the creation of visualizations to derive meaningful insights.
 ## Repository Structure
 
 - **`starting_file/`**: Contains the original dataset from Kaggle.
