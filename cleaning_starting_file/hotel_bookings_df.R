@@ -138,6 +138,20 @@ colnames(df)
 df <- df %>%
   select(-total_stay.1)
 
+# Checking the current class of the column
+class(df$last_reservation_update)
+
+# Converting the column to Date using the original format
+df$last_reservation_update <- as.Date(df$last_reservation_update, format = "%d-%m-%y")
+
+# Formatting the column to the desired format
+df$last_reservation_update <- format(df$last_reservation_update, "%Y-%m-%d")
+
+# Converting the column to Date again to ensure it is of Date class
+df$last_reservation_update <- as.Date(df$last_reservation_update)
+
+# Checking the class again to confirm the conversion
+class(df$last_reservation_update)
 
 # Specifying the path for the cleaned CSV file
 cleaned_file_path <- "cleaned_starting_file/hotel_bookings_cleaned.csv"
