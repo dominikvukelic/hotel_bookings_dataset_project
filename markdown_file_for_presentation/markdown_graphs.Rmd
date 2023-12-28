@@ -17,9 +17,10 @@ Sys.setlocale("LC_TIME", "English")
 ```
 
 ```{r}
-# Load the dataset directly within the R code chunk with the full path
-dataset_path <- "C:\\Users\\Hectic\\Documents\\hotel_bookings_dataset_project\\cleaned_starting_file\\hotel_bookings_cleaned.csv"
+# Specify the relative path to your dataset within the project
+dataset_path <- file.path('..', 'cleaned_starting_file', 'hotel_bookings_cleaned.csv')
 
+# Importing the dataset using read.csv with na.strings parameter to indicate missing values
 df <- read.csv(dataset_path, na.strings = c("", "NA"))
 ```
 
